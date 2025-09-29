@@ -1,83 +1,83 @@
-Toxic Comment Classification Challenge
-This project is based on the Jigsaw Toxic Comment Classification Challenge on Kaggle. The goal is to build a multi-label text classification model that detects different types of toxicity in online comments.
+# 📝 Toxic Comment Classification Challenge
 
-🧠 Problem Statement
+This project is based on the **[Jigsaw Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)** on Kaggle.  
+The goal is to build a **multi-label text classification model** that detects different types of toxicity in online comments.
+
+---
+
+## 🚨 Problem Statement
 Given a comment, the model classifies it into one or more categories of harmful language.
 
-Toxicity Categories
-The model targets the following six types of toxicity:
+---
 
-toxic: General disrespectful behavior.
+## 🏷 Toxicity Categories
+The model predicts the following **six types of toxicity**:
 
-severe_toxic: Highly offensive language.
+- **toxic**: General disrespectful behavior  
+- **severe_toxic**: Highly offensive language  
+- **obscene**: Obscene or vulgar language  
+- **threat**: Expressing intent to harm  
+- **insult**: Direct personal attacks  
+- **identity_hate**: Targeted attacks based on identity  
 
-obscene: Obscene or vulgar language.
+---
 
-threat: Expressing intent to harm.
+## 📂 Dataset
+The dataset contains text comments extracted from **Wikipedia’s talk page edits**, with binary labels for each toxicity category.  
 
-insult: Direct personal attacks.
+- **train.csv** → Labeled data for training  
+- **test.csv** → Unlabeled data for predictions  
 
-identity_hate: Targeted attacks based on identity.
+---
 
-📂 Dataset
-The dataset contains text comments extracted from Wikipedia’s talk page edits, with binary labels for each category of toxicity. The dataset is split into:
+## ⚙️ Workflow
+The analysis follows a classic **NLP pipeline**:
 
-train.csv — Labeled data used for training.
+1. **Data Exploration and Analysis**  
+2. **Text Preprocessing**:  
+   - Cleaning text  
+   - Stemming (Porter Stemmer)  
+   - Removing English stopwords  
+3. **Feature Extraction**:  
+   - TF-IDF Vectorization  
+   - (1, 2) N-gram range  
+   - Maximum 10,000 features  
+4. **Model Training** (multi-label using `OneVsRestClassifier`):  
+   - Logistic Regression  
+   - Random Forest  
+   - XGBoost  
+5. **Model Evaluation**:  
+   - Macro F1-score  
+   - 3-fold Cross-Validation  
 
-test.csv — Unlabeled data used for final predictions.
+---
 
-⚙️ Workflow
-The analysis follows a classic NLP workflow:
+## 📦 Libraries Used
+- **pandas**, **numpy**  
+- **scikit-learn**  
+- **xgboost**  
+- **nltk**  
 
-Data Exploration and Analysis
+---
 
-Text Preprocessing: Cleaning, stemming (Porter Stemmer), and English stopwords removal.
-
-Feature Extraction: Generating numerical features using TF-IDF Vectorization (with (1, 2) N-gram range and 10,000 max features).
-
-Model Training: Training multiple classifiers using the OneVsRestClassifier strategy for multi-label classification.
-
-Logistic Regression
-
-Random Forest
-
-XGBoost
-
-Model Evaluation: Assessing performance using Macro F1-score and 3-fold Cross-Validation (CV).
-
-📦 Libraries Used
-The core analysis relies on standard machine learning and data science libraries:
-
-pandas, numpy
-
-sklearn (Scikit-learn)
-
-xgboost
-
-nltk (Natural Language Toolkit)
-
-📊 Results
-Multiple machine learning models were trained and evaluated using the Macro F1-score on cross-validation. The preprocessing and TF-IDF features created a solid baseline.
-
-The cross-validation scores revealed that the simpler, linear model provided the most stable and highest out-of-sample performance.
+## 📊 Results
+- Multiple models were trained and evaluated using **Macro F1-score**.  
+- Preprocessing + TF-IDF features provided a **strong baseline**.  
+- **Random Forest** achieved the most **stable and high-performing results** compared to more complex models.  
 
 
 
-📁 Structure
-toxic_comment_classification.ipynb: Main Jupyter notebook with full code and explanations.
+## 📌 Notes
+- Download **NLTK resources** (like stopwords) before running preprocessing.  
+- Code runs in **Kaggle notebooks**.  
 
-data/: Contains train.csv and test.csv datasets (if included).
+---
 
-README.md: Project description and results summary.
+## ⏭️ Future Improvements
+- 🔧 **Hyperparameter Tuning**: Optimize Logistic Regression with GridSearchCV  
+- 🧠 **Advanced Features**: Use pre-trained embeddings (e.g., BERT, GloVe)  
+- 🤖 **Deep Learning**: Explore RNNs, CNNs, or Transformers for better sequence modeling  
 
-📌 Notes
-NLTK resources like stopwords must be downloaded before running the preprocessing step.
+---
 
-The code supports Kaggle environments but can be modified for local execution.
 
-⏭️ Future Improvements
-Hyperparameter Tuning: Fine-tune the Logistic Regression model using GridSearchCV.
-
-Advanced Feature Engineering: Integrate pre-trained language models like BERT to use contextual embeddings for improved semantic understanding.
-
-Deep Learning: Explore recurrent or convolutional neural networks (RNNs/CNNs) for sequence classification.
